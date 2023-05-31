@@ -1,0 +1,37 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #fff;
+}
+
+html, body{
+  background-color: #242424;;
+}
+
+form{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40% !important;
+  background-color: #dcdcdc;
+  padding: 3rem !important;
+}
+
+form label{
+  color: #242424 !important;
+}
+
+@media screen and (max-width:992px) {
+  form{
+    width: 70% !important;
+  }
+}
+
+@media screen and (max-width:400px) {
+  form{
+    width: 90% !important;
+    padding: 1.5rem !important;
+  }
+}
