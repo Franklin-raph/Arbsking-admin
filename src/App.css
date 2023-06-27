@@ -2,11 +2,16 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: #fff;
+  font-family: 'Poppins', sans-serif;
+}
+
+p{
+  margin-bottom: 0;
 }
 
 html, body{
-  background-color: #242424;;
+  color: #fff;
+  background-color: #000;
 }
 
 form{
@@ -21,6 +26,56 @@ form{
 
 form label{
   color: #242424 !important;
+}
+
+.stats{
+  color: #fff;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 5rem;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.totalUsers, .totalActiveUsers{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px 13px;
+  border-radius: 3px;
+  gap: 3rem;
+}
+
+.totalUsers h6, .totalActiveUsers h6{
+  font-size: 32px;
+}
+
+.totalActiveUsers i{
+  background-color: rgba(0, 210, 91, 0.11);
+  color: #00d25b;
+  padding: 10px;
+  border-radius: 7px;
+  font-size: 24px;
+}
+
+.totalUsers i{
+  background-color: rgba(0, 116, 210, 0.11);
+  color: #0085d2;
+  padding: 10px;
+  border-radius: 7px;
+  font-size: 24px;
+}
+
+.totalActiveUsers, .totalUsers{
+  background-color: #191C24;
+}
+
+@media screen and (max-width:1310px) {
+  .stats{
+    padding: 1rem 3rem;
+  }
 }
 
 @media screen and (max-width:992px) {
