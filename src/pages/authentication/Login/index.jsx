@@ -39,23 +39,25 @@ const Login = () => {
     }
 
   return (
-    <form className='container' onSubmit={adminLogin}>
-        <h3 className='text-center text-secondary mb-3'>Admin Login</h3>
-        <div className="mb-3">
-            <label className="form-label text-secondary">Username</label>
-            <input type="text" className="form-control" onChange={(e) => setUserName(e.target.value)} value={username}/>
-        </div>
-        <div className="mb-3">
-            <label className="form-label text-secondary">Password</label>
-            <input type="text" className="form-control" onChange={(e) => setPassword(e.target.value)} value={password} />
-        </div>
-        <div className='w-50 mx-auto'>
-            <button type="submit" className={loading? `disabled btn btn-success w-100` : `btn btn-success w-100` }>
-                {loading ? <i className="fa-solid fa-spinner fa-spin me-2"></i>:""}
-                Login
-            </button>
-        </div>
-    </form>
+    <div className='loginBg'>
+        <form className='container' onSubmit={adminLogin}>
+            <h3 className='text-center text-secondary mb-3'>Admin Login</h3>
+            <div className="mb-3">
+                <label className="form-label text-secondary">Username</label>
+                <input type="text" className="form-control" onChange={(e) => setUserName(e.target.value)} value={username}/>
+            </div>
+            <div className="mb-3">
+                <label className="form-label text-secondary">Password</label>
+                <input type="text" className="form-control" onChange={(e) => setPassword(e.target.value)} value={password} />
+            </div>
+            <div className='w-50 mx-auto'>
+                <button type="submit" className={loading? `disabled btn btn-success w-100` : `btn btn-success w-100` }>
+                    {loading ? <i className="fa-solid fa-spinner fa-spin me-2"></i>:""}
+                    Login
+                </button>
+            </div>
+        </form>
+    </div>
   )
 }
 

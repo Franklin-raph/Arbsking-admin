@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Sidenav = ({users}) => {
+  const navigate = useNavigate()
 
-  useEffect(() => {
-  },[])
+function logout(){
+  localStorage.clear()
+}
 
   const totalActiveUsers = users.filter(user => user.status === "activated").length;
 
@@ -50,11 +52,16 @@ const Sidenav = ({users}) => {
 
       <div className="offcanvas offcanvas-start" data-bs-scroll="true" tabIndex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
         <div className="offcanvas-header">
-          <h5 className="offcanvas-title" id="offcanvasWithBothOptionsLabel">Menu</h5>
+          <h5 className="offcanvas-title text-dark" id="offcanvasWithBothOptionsLabel">Menu</h5>
           <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div className="offcanvas-body">
-          <Link to="/dashboard">All Users</Link>
+          <li>
+            <Link to="/dashboard">All Users</Link>
+          </li>
+          <li>
+            <a href="/" onClick={logout}>Logout</a>
+          </li>
         </div>
       </div>
     </div>
