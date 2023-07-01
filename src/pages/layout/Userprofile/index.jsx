@@ -6,6 +6,8 @@ const Userprofile = () => {
   const params = useParams()
   const loggedInAdmin = JSON.parse(localStorage.getItem('admin'))
   const [userDetail, setUserDetail] = useState({})
+  const [userTransactionDetail, setUserTransactionDetail] = useState({})
+  // const [userDetail, setUserDetail] = useState({})
 
   useEffect(() => {
     getAUsersDetails()
@@ -19,17 +21,43 @@ const Userprofile = () => {
       }
     })
     const data = await response.json()
-    setUserDetail(data)
+    setUserDetail(data.userDetails)
     if(response.ok){
       console.log(data)
     }
   }
 
   return (
-    <div>
+    <div className='user-details-container'>
       <div className="user-details">
         <div>
-          
+          <h6>Username</h6>
+          <p>{userDetail && userDetail.username}</p>
+        </div>
+        <div>
+          <h6>Email</h6>
+          <p>{userDetail && userDetail.email}</p>
+        </div>
+      </div>
+
+      <div className="user-details">
+        <div>
+          <h6>Referal Link</h6>
+          <p>{userDetail && userDetail.referrralLink}</p>
+        </div>
+        <div>
+          <h6>Status</h6>
+          <p>{userDetail && userDetail.status}</p>
+        </div>
+      </div>
+      <div className="user-details">
+        <div>
+          <h6>Sub Expiring Date</h6>
+          <p>{userDetail && userDetail.subExpiringDate}</p>
+        </div>
+        <div>
+          <h6>Sub Type</h6>
+          <p>{userDetail && userDetail.subType}</p>
         </div>
       </div>
     </div>

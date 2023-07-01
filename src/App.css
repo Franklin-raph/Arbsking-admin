@@ -125,6 +125,18 @@ form label{
   font-size: 5rem;
 }
 
+.user-details-container{
+  padding: 1rem 5rem;
+}
+
+.user-details{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 3rem;
+  margin-bottom: 2rem;
+}
+
 @media screen and (max-width:1310px) {
   .stats{
     padding: 1rem 3rem;
