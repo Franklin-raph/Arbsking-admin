@@ -97,6 +97,22 @@ form label{
   font-size: 24px;
 }
 
+.totalUsers .fa-users-slash{
+  background-color: rgba(210, 0, 0, 0.11);
+  color: #d20000;
+  padding: 10px;
+  border-radius: 7px;
+  font-size: 24px;
+}
+
+.totalUsers .fa-user-check{
+  background-color: rgba(210, 210, 0, 0.11);
+  color: #d2c800;
+  padding: 10px;
+  border-radius: 7px;
+  font-size: 24px;
+}
+
 .totalActiveUsers, .totalUsers{
   background-color: #191C24;
 }

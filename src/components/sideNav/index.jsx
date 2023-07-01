@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-const Sidenav = ({users}) => {
-  const navigate = useNavigate()
+const Sidenav = ({users, numOfSubedUsers}) => {
 
 function logout(){
   localStorage.clear()
@@ -36,17 +35,17 @@ function logout(){
         </div>
         <div className="totalUsers">
           <div>
-            <h6>{users && users.length}</h6>
+            <h6>{numOfSubedUsers && numOfSubedUsers.length}</h6>
             <p>Subscribed Users</p>
           </div>
-          <i className="fa-solid fa-users"></i>
+          <i className="fa-solid fa-user-check"></i>
         </div>
         <div className="totalUsers">
           <div>
-            <h6>{users && users.length}</h6>
+            <h6>{users.length - numOfSubedUsers.length}</h6>
             <p>Un-Sub. Users</p>
           </div>
-          <i className="fa-solid fa-users"></i>
+          <i className="fa-solid fa-users-slash"></i>
         </div>
       </div>
 

@@ -2,7 +2,7 @@ import React,{useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
-    const [username, setUserName] = useState("godwin12")
+    const [adminID, setAdminID] = useState("ARBSK-6c02dA")
     const [password, setPassword] = useState("123456789")
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
@@ -25,7 +25,7 @@ const Login = () => {
             headers: {
                 'Content-type':"application/json"
             },
-            body: JSON.stringify({username, password})
+            body: JSON.stringify({adminID, password})
         })
         const data = await resposnse.json()
         console.log(data)
@@ -43,8 +43,8 @@ const Login = () => {
         <form className='container' onSubmit={adminLogin}>
             <h3 className='text-center text-secondary mb-3'>Admin Login</h3>
             <div className="mb-3">
-                <label className="form-label text-secondary">Username</label>
-                <input type="text" className="form-control" onChange={(e) => setUserName(e.target.value)} value={username}/>
+                <label className="form-label text-secondary">Admin ID</label>
+                <input type="text" className="form-control" onChange={(e) => setAdminID(e.target.value)} value={adminID}/>
             </div>
             <div className="mb-3">
                 <label className="form-label text-secondary">Password</label>

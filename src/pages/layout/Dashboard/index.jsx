@@ -31,7 +31,7 @@ const Dashboard = ({users}) => {
             </thead>
             <tbody>
             {users && users.map(user => (
-              <tr key={user.username}>
+              <tr key={user.username} onClick={() => navigate('/userprofile/'+user._id)}>
                 <td>{user.username}</td>
                 <td>{user.email}</td>
                 <td>{user.status}</td>
