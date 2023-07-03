@@ -2,8 +2,10 @@ import React,{useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
-    const [adminID, setAdminID] = useState("ARBSK-6c02dA")
-    const [password, setPassword] = useState("123456789")
+    const [adminID, setAdminID] = useState("")
+    const [password, setPassword] = useState("")
+    // const [adminID, setAdminID] = useState("ARBSK-6c02dA")
+    // const [password, setPassword] = useState("123456789")
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
 
