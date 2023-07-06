@@ -1,9 +1,10 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const Dashboard = ({users}) => {
     const navigate = useNavigate()
     const loggedInAdmin = JSON.parse(localStorage.getItem('admin'))
+    const [searchUser, setSearchUser] = useState("")
 
     useEffect(() => {
         if(!loggedInAdmin){
@@ -16,6 +17,10 @@ const Dashboard = ({users}) => {
 
   return (
     <div className='container-fluid px-5'>
+      <div className='searchUser'>
+        <input type='search' onChange={e => setSearchUser(e.target.value.toLocaleLowerCase())} placeholder='Search user by email or username or id'/>
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
       {users.length === 0 ? 
           <i className="fa-solid fa-circle-notch fa-spin" id='loader'></i>
         : 
@@ -30,7 +35,21 @@ const Dashboard = ({users}) => {
               </tr>
             </thead>
             <tbody>
-            {users && users.map(user => (
+            {users && users
+              .filter(user => user.username
+              .toLowerCase().includes(searchUser) || user.email
+              .toLowerCase().includes(searchUser) || user.arbsKingId
+              .toLocaleLowerCase().includes(searchUser))
+              .map(user =>{
+                return(<tr key={user.username} onClick={() => navigate('/userprofile/'+user._id)}>
+                <td>{user.username}</td>
+                <td>{user.email}</td>
+                <td>{user.status}</td>
+                <td>{Number(user.balance).toFixed(2)}</td>
+                <td>{Number(user.balanceSpent).toFixed(2)}</td>
+              </tr>)
+              })}
+            {/* {users && users.map(user => (
               <tr key={user.username} onClick={() => navigate('/userprofile/'+user._id)}>
                 <td>{user.username}</td>
                 <td>{user.email}</td>
@@ -38,7 +57,7 @@ const Dashboard = ({users}) => {
                 <td>{Number(user.balance).toFixed(2)}</td>
                 <td>{Number(user.balanceSpent).toFixed(2)}</td>
               </tr>
-            ))}
+            ))} */}
             </tbody>
         </table>
       }

@@ -54,8 +54,7 @@ const Login = () => {
             </div>
             <div className='w-50 mx-auto'>
                 <button type="submit" className={loading? `disabled btn btn-success w-100` : `btn btn-success w-100` }>
-                    {loading ? <i className="fa-solid fa-spinner fa-spin me-2"></i>:""}
-                    Login
+                    {loading ? <i className="fa-solid fa-spinner fa-spin me-2"></i>:"Login"}
                 </button>
             </div>
         </form>

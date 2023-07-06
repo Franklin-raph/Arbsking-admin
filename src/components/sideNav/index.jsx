@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-const Sidenav = ({users, numOfSubedUsers}) => {
+const Sidenav = ({users, numOfSubedUsers, totalFunds, totalFundsInAllAddresses}) => {
 
 function logout(){
   localStorage.clear()
@@ -26,26 +26,43 @@ function logout(){
           </div>
           <i className="fa-solid fa-users"></i>
         </div>
-        <div className="totalActiveUsers">
-          <div>
-            <h6>{users && totalActiveUsers}</h6>
-            <p>Activated Users</p>
-          </div>
-          <i className="fa-solid fa-circle-check"></i>
-        </div>
         <div className="totalUsers">
           <div>
-            <h6>{numOfSubedUsers && numOfSubedUsers.length}</h6>
+            <h6>{numOfSubedUsers && numOfSubedUsers}</h6>
             <p>Subscribed Users</p>
           </div>
           <i className="fa-solid fa-user-check"></i>
         </div>
         <div className="totalUsers">
           <div>
-            <h6>{users.length - numOfSubedUsers.length}</h6>
-            <p>Un-Sub. Users</p>
+            <h6>${totalFunds && totalFunds}</h6>
+            <p>Total Funds</p>
           </div>
-          <i className="fa-solid fa-users-slash"></i>
+          <i className="fa-solid fa-money-check-dollar"></i>
+        </div>
+        <div className="totalUsers">
+          <div>
+            <h6>${0}</h6>
+            <p>Total Revenue</p>
+          </div>
+          <i className="fa-solid fa-money-bill-trend-up"></i>
+        </div>
+      </div>
+
+      <div className="stats2">
+      <div className="totalUsers">
+          <div>
+            <h6>${totalFundsInAllAddresses && totalFundsInAllAddresses}</h6>
+            <p>Total Funds in all Addresses</p>
+          </div>
+          <i className="fa-solid fa-money-bill-trend-up"></i>
+        </div>
+        <div className="totalUsers">
+          <div>
+            <h6>${0}</h6>
+            <p>Total Expenses</p>
+          </div>
+          <i className="fa-solid fa-money-bill-trend-up"></i>
         </div>
       </div>
 

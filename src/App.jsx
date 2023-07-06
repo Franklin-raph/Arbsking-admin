@@ -12,10 +12,14 @@ function App() {
   const loggedInAdmin = JSON.parse(localStorage.getItem('admin'))
   const [users, setUsers] = useState([])
   const [numOfSubedUsers, setNumOfSubedUsers] = useState([])
+  const [totalFunds, setTotalFunds] = useState("")
+  const [totalFundsInAllAddresses, setTotalFundsInAllAddresses] = useState("")
 
   useEffect(() => {
         getAllUsers()
         getAllSubscribedUsers()
+        totalFundsMade()
+        getTotalFundsInAllAddresses()
   },[])
 
   async function getAllUsers(){
@@ -25,6 +29,7 @@ function App() {
         Authorization: `Bearer ${loggedInAdmin}`
       }
     })
+    console.log(response)
     const data = await response.json()
     if(response.ok){
       console.log(data.message)
@@ -41,15 +46,39 @@ function App() {
     })
     const data = await response.json()
     if(response.ok){
-      console.log(data.message)
+      // console.log(data.message)
       setNumOfSubedUsers(data.message)
     }
+  }
+
+  async function totalFundsMade(){
+    const response = await fetch("https://sportbetpredict.onrender.com/api/admin/fetch-all/funds-made", {
+      method:"GET",
+      headers: {
+        Authorization: `Bearer ${loggedInAdmin}`
+      }
+    })
+    const data = await response.json()
+    console.log(data)
+    setTotalFunds(data.message)
+  }
+
+  async function getTotalFundsInAllAddresses(){
+    const response = await fetch("https://sportbetpredict.onrender.com/api/admin/fetch/all-users/address-balance", {
+      method:"GET",
+      headers: {
+        Authorization: `Bearer ${loggedInAdmin}`
+      }
+    })
+    const data = await response.json()
+    console.log(data)
+    setTotalFundsInAllAddresses(data.message)
   }
 
   return (
     <>
       <BrowserRouter>
-      <Sidenav users={users} numOfSubedUsers={numOfSubedUsers}/>
+      <Sidenav users={users} numOfSubedUsers={numOfSubedUsers} totalFunds={totalFunds} totalFundsInAllAddresses={totalFundsInAllAddresses}/>
         <Routes>
           <Route path='/' element={<Login />} />
           <Route path='/register' element={<Register />} />
