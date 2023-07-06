@@ -18,8 +18,8 @@ function App() {
   useEffect(() => {
         getAllUsers()
         getAllSubscribedUsers()
-        totalFundsMade()
-        getTotalFundsInAllAddresses()
+        getTotalFundsMade()
+        // getTotalFundsInAllAddresses()
   },[])
 
   async function getAllUsers(){
@@ -32,7 +32,6 @@ function App() {
     console.log(response)
     const data = await response.json()
     if(response.ok){
-      console.log(data.message)
       setUsers(data.message)
     }
   }
@@ -51,7 +50,7 @@ function App() {
     }
   }
 
-  async function totalFundsMade(){
+  async function getTotalFundsMade(){
     const response = await fetch("https://sportbetpredict.onrender.com/api/admin/fetch-all/funds-made", {
       method:"GET",
       headers: {

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import EmailUser from '../../../components/email'
 
 
 const Userprofile = () => {
@@ -27,40 +28,49 @@ const Userprofile = () => {
     }
   }
 
-  return (
-    <div className='user-details-container'>
-      <div className="user-details">
-        <div>
-          <h6>Username</h6>
-          <p>{userDetail && userDetail.username}</p>
-        </div>
-        <div>
-          <h6>Email</h6>
-          <p>{userDetail && userDetail.email}</p>
-        </div>
-      </div>
 
-      <div className="user-details">
-        <div>
-          <h6>Referal Link</h6>
-          <p>{userDetail && userDetail.referrralLink}</p>
+
+  return (
+    <>
+      <EmailUser />
+      <div className='user-details-container'>
+        <div className="emailSendBtn">
+          <p></p>
+          <button>Send User Email</button>
         </div>
-        <div>
-          <h6>Status</h6>
-          <p>{userDetail && userDetail.status}</p>
+        <div className="user-details">
+          <div>
+            <h6>Username</h6>
+            <p>{userDetail && userDetail.username}</p>
+          </div>
+          <div>
+            <h6>Email</h6>
+            <p>{userDetail && userDetail.email}</p>
+          </div>
+        </div>
+
+        <div className="user-details">
+          <div>
+            <h6>Referal Link</h6>
+            <p>{userDetail && userDetail.referrralLink}</p>
+          </div>
+          <div>
+            <h6>Status</h6>
+            <p>{userDetail && userDetail.status}</p>
+          </div>
+        </div>
+        <div className="user-details">
+          <div>
+            <h6>Sub Expiring Date</h6>
+            <p>{userDetail && userDetail.subExpiringDate}</p>
+          </div>
+          <div>
+            <h6>Sub Type</h6>
+            <p>{userDetail && userDetail.subType}</p>
+          </div>
         </div>
       </div>
-      <div className="user-details">
-        <div>
-          <h6>Sub Expiring Date</h6>
-          <p>{userDetail && userDetail.subExpiringDate}</p>
-        </div>
-        <div>
-          <h6>Sub Type</h6>
-          <p>{userDetail && userDetail.subType}</p>
-        </div>
-      </div>
-    </div>
+    </>
   )
 }
 

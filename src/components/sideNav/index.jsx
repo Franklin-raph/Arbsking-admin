@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom'
 
 const Sidenav = ({users, numOfSubedUsers, totalFunds, totalFundsInAllAddresses}) => {
 
+  const navigate = useNavigate()
+
 function logout(){
   localStorage.clear()
 }
@@ -12,7 +14,7 @@ function logout(){
   return (
     <div>
       <div className="d-flex justify-content-between p-3 mb-4" style={{ borderBottom:"1px solid grey" }}v>
-        <h4 className='text-light'>Arbsking Admin</h4>
+        <h5 className='text-light' onClick={() => navigate("/dashboard")} style={{ cursor:"pointer" }}><i className="fa-solid fa-house"></i>Arbsking Admin</h5>
         <button className="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
           <i className="fa-solid fa-bars"></i>
         </button>
@@ -21,21 +23,21 @@ function logout(){
       <div className='stats'>
         <div className="totalUsers">
           <div>
-            <h6>{users && users.length}</h6>
+            <h6>{users && users.length - 4}</h6>
             <p>Total Users</p>
           </div>
           <i className="fa-solid fa-users"></i>
         </div>
         <div className="totalUsers">
           <div>
-            <h6>{numOfSubedUsers && numOfSubedUsers}</h6>
+            <h6>{numOfSubedUsers && numOfSubedUsers - 4}</h6>
             <p>Subscribed Users</p>
           </div>
           <i className="fa-solid fa-user-check"></i>
         </div>
         <div className="totalUsers">
           <div>
-            <h6>${totalFunds && totalFunds}</h6>
+            <h6>${totalFunds && totalFunds.toFixed(2)}</h6>
             <p>Total Funds</p>
           </div>
           <i className="fa-solid fa-money-check-dollar"></i>
