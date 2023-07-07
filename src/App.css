@@ -197,7 +197,7 @@ form label{
   background-color: #fff;
   width: 40%;
   position: relative;
-  padding: 2rem;
+  padding: 1rem 2rem;
   color: #000;
   border-radius: 5px;
 }
@@ -215,6 +215,7 @@ form label{
 
 .sendMessage div label{
   display: block;
+  font-size: 13px;
 }
 
 .sendMessage div{
