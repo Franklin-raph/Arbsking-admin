@@ -5,6 +5,10 @@
   font-family: 'Poppins', sans-serif;
 }
 
+html, body{
+  overflow-x: hidden;
+}
+
 p{
   margin-bottom: 0;
 }
@@ -42,9 +46,9 @@ form{
 
 .loginBg{
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+  /* transform: translate(-50%, -50%); */
   background-color: #000000;
   display: flex;
   align-items: center;
@@ -203,6 +207,10 @@ form label{
   border: 1px solid #000000c8;
   font-size: 13px;
   cursor: pointer;
+}
+
+.sendMessage div label{
+  display: block;
 }
 
 #loader{

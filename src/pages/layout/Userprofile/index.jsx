@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import EmailUser from '../../../components/email'
 
 
@@ -7,10 +7,18 @@ const Userprofile = () => {
   const params = useParams()
   const loggedInAdmin = JSON.parse(localStorage.getItem('admin'))
   const [userDetail, setUserDetail] = useState({})
+  const navigate = useNavigate()
   const [userTransactionDetail, setUserTransactionDetail] = useState({})
+  const [isEmailOpen, setIsEmailOpen] = useState(false)
   // const [userDetail, setUserDetail] = useState({})
 
   useEffect(() => {
+    if(!loggedInAdmin){
+      navigate("/")
+  }
+  // if(loggedInAdmin){
+  //     navigate('/dashboard')
+  // }
     getAUsersDetails()
   },[])
 
@@ -28,15 +36,13 @@ const Userprofile = () => {
     }
   }
 
-
-
   return (
     <>
-      <EmailUser />
+      {isEmailOpen && <EmailUser />}
       <div className='user-details-container'>
         <div className="emailSendBtn">
           <p></p>
-          <button>Send User Email</button>
+          <button onClick={() => setIsEmailOpen(!isEmailOpen)}>Send User Email</button>
         </div>
         <div className="user-details">
           <div>

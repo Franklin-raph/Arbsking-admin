@@ -2,9 +2,10 @@ import React, {useEffect, useState} from 'react'
 import EmailUser from '../../../components/email'
 import { useNavigate } from 'react-router-dom'
 
-const Dashboard = ({users}) => {
+const Dashboard = () => {
     const navigate = useNavigate()
     const loggedInAdmin = JSON.parse(localStorage.getItem('admin'))
+    const [users, setUsers] = useState([])
     const [searchUser, setSearchUser] = useState("")
 
     useEffect(() => {
@@ -13,15 +14,31 @@ const Dashboard = ({users}) => {
         }
         if(loggedInAdmin){
             navigate('/dashboard')
+            getAllUsers()
         }
     },[])
+
+    async function getAllUsers(){
+      const response = await fetch("https://sportbetpredict.onrender.com/api/admin/fetch/all-users", {
+        method:"POST",
+        headers: {
+          Authorization: `Bearer ${loggedInAdmin}`
+        }
+      })
+      console.log(response)
+      const data = await response.json()
+      if(response.ok){
+        setUsers(data.message)
+        localStorage.setItem("users", JSON.stringify(data.message))
+      }
+    }
 
   return (
     <>
       <div className='container-fluid px-5'>
         <div className='searchUser'>
           <input type='search' onChange={e => setSearchUser(e.target.value.toLocaleLowerCase())} placeholder='Search user by email or username or id'/>
-          <i class="fa-solid fa-magnifying-glass"></i>
+          <i className="fa-solid fa-magnifying-glass"></i>
         </div>
         {users.length === 0 ? 
             <i className="fa-solid fa-circle-notch fa-spin" id='loader'></i>

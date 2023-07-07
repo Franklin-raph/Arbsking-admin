@@ -35,11 +35,11 @@ const EmailUser = () => {
                 </div>
                 <div>
                     <label htmlFor="emai">Admin Pin</label>
-                    <input type="text" />
+                    <input type="text"/>
                 </div>
                 <div>
                     <label htmlFor="emai">Email Subject</label>
-                    <input type="text" />
+                    <input type="text"/>
                 </div>
                 <div>
                     <label htmlFor="emai">Message</label>

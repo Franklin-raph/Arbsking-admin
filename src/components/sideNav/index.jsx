@@ -1,20 +1,94 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-const Sidenav = ({users, numOfSubedUsers, totalFunds, totalFundsInAllAddresses}) => {
+const Sidenav = () => {
+
+  const [users, setUsers] = useState([])
+  const [numOfSubedUsers, setNumOfSubedUsers] = useState([])
+  const [totalFunds, setTotalFunds] = useState("")
+  const [totalFundsInAllAddresses, setTotalFundsInAllAddresses] = useState("")
+  const loggedInAdmin = JSON.parse(localStorage.getItem('admin'))
 
   const navigate = useNavigate()
+
+  useEffect(() => {
+    if(!loggedInAdmin){
+      navigate("/")
+  }
+  if(loggedInAdmin){
+    navigate("/dashboard")
+    getAllUsers()
+    getAllSubscribedUsers()
+    getTotalFundsMade()
+  }
+    // getTotalFundsInAllAddresses()
+},[])
+
+  async function getAllUsers(){
+    const response = await fetch("https://sportbetpredict.onrender.com/api/admin/fetch/all-users", {
+      method:"POST",
+      headers: {
+        Authorization: `Bearer ${loggedInAdmin}`
+      }
+    })
+    console.log(response)
+    const data = await response.json()
+    if(response.ok){
+      setUsers(data.message)
+      localStorage.setItem("users", JSON.stringify(data.message))
+    }
+  }
+
+  async function getAllSubscribedUsers(){
+    const response = await fetch("https://sportbetpredict.onrender.com/api/admin/fetch/subscribed-users", {
+      method:"POST",
+      headers: {
+        Authorization: `Bearer ${loggedInAdmin}`
+      }
+    })
+    const data = await response.json()
+    if(response.ok){
+      // console.log(data.message)
+      setNumOfSubedUsers(data.message)
+    }
+  }
+
+  async function getTotalFundsMade(){
+    const response = await fetch("https://sportbetpredict.onrender.com/api/admin/fetch-all/funds-made", {
+      method:"GET",
+      headers: {
+        Authorization: `Bearer ${loggedInAdmin}`
+      }
+    })
+    const data = await response.json()
+    console.log(data)
+    if(data.message === "You must be logged in to perform that action!") {
+      localStorage.clear()
+    }
+    setTotalFunds(data.message)
+  }
+
+  async function getTotalFundsInAllAddresses(){
+    const response = await fetch("https://sportbetpredict.onrender.com/api/admin/fetch/all-users/address-balance", {
+      method:"GET",
+      headers: {
+        Authorization: `Bearer ${loggedInAdmin}`
+      }
+    })
+    const data = await response.json()
+    console.log(data)
+    setTotalFundsInAllAddresses(data.message)
+  }
 
 function logout(){
   localStorage.clear()
 }
 
-  const totalActiveUsers = users.filter(user => user.status === "activated").length;
 
   return (
     <div>
       <div className="d-flex justify-content-between p-3 mb-4" style={{ borderBottom:"1px solid grey" }}v>
-        <h5 className='text-light' onClick={() => navigate("/dashboard")} style={{ cursor:"pointer" }}><i className="fa-solid fa-house"></i>Arbsking Admin</h5>
+        <h5 className='text-light' onClick={() => navigate("/dashboard")} style={{ cursor:"pointer" }}><i className="fa-solid fa-house" style={{ marginRight:"10px" }}></i>Arbsking Admin</h5>
         <button className="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
           <i className="fa-solid fa-bars"></i>
         </button>
@@ -37,7 +111,7 @@ function logout(){
         </div>
         <div className="totalUsers">
           <div>
-            <h6>${totalFunds && totalFunds.toFixed(2)}</h6>
+            <h6>${totalFunds && totalFunds}</h6>
             <p>Total Funds</p>
           </div>
           <i className="fa-solid fa-money-check-dollar"></i>
