@@ -42,7 +42,7 @@ const Login = () => {
 
   return (
     <div className='loginBg'>
-        <form className='container' onSubmit={adminLogin}>
+        <form className='container login-form' onSubmit={adminLogin}>
             <h3 className='text-center text-secondary mb-3'>Admin Login</h3>
             <div className="mb-3">
                 <label className="form-label text-secondary">Admin ID</label>

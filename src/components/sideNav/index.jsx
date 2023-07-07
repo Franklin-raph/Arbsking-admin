@@ -37,6 +37,10 @@ const Sidenav = () => {
       setUsers(data.message)
       localStorage.setItem("users", JSON.stringify(data.message))
     }
+    if(data.message === "You must be logged in to perform that action!") {
+      navigate("/")
+      localStorage.clear()
+    }
   }
 
   async function getAllSubscribedUsers(){
@@ -51,6 +55,10 @@ const Sidenav = () => {
       // console.log(data.message)
       setNumOfSubedUsers(data.message)
     }
+    if(data.message === "You must be logged in to perform that action!") {
+      navigate("/")
+      localStorage.clear()
+    }
   }
 
   async function getTotalFundsMade(){
@@ -63,6 +71,7 @@ const Sidenav = () => {
     const data = await response.json()
     console.log(data)
     if(data.message === "You must be logged in to perform that action!") {
+      navigate("/")
       localStorage.clear()
     }
     setTotalFunds(data.message)
@@ -93,7 +102,6 @@ function logout(){
           <i className="fa-solid fa-bars"></i>
         </button>
       </div>
-
       <div className='stats'>
         <div className="totalUsers">
           <div>

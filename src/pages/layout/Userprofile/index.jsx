@@ -16,9 +16,9 @@ const Userprofile = () => {
     if(!loggedInAdmin){
       navigate("/")
   }
-  // if(loggedInAdmin){
-  //     navigate('/dashboard')
-  // }
+  if(loggedInAdmin){
+      navigate('/userprofile/'+params.id)
+  }
     getAUsersDetails()
   },[])
 
@@ -38,7 +38,7 @@ const Userprofile = () => {
 
   return (
     <>
-      {isEmailOpen && <EmailUser />}
+      {isEmailOpen && <EmailUser userEmail = {userDetail && userDetail.email} setIsEmailOpen={setIsEmailOpen}/>}
       <div className='user-details-container'>
         <div className="emailSendBtn">
           <p></p>

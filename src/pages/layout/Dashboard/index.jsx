@@ -41,8 +41,10 @@ const Dashboard = () => {
           <i className="fa-solid fa-magnifying-glass"></i>
         </div>
         {users.length === 0 ? 
-            <i className="fa-solid fa-circle-notch fa-spin" id='loader'></i>
-          : 
+            <div className='loaderBg'>
+              <i className="fa-solid fa-circle-notch fa-spin" id='loader'></i>
+            </div>
+          :
             <table className="table table-bordered table-responsive text-light">
               <thead>
                 <tr>
@@ -71,7 +73,6 @@ const Dashboard = () => {
                     ) : (
                       <td>No Sub</td>
                     )}
-                    {/* {new Date() > new Date(user.subExpiringDate) ? <td style={{ backgroundColor:"#d20000" }}>Expired</td> : new Date() < new Date(user.subExpiringDate) ? <td style={{ backgroundColor:"#00d25b" }}>Active</td>} */}
                     <td>{Number(user.balance).toFixed(2)}</td>
                     <td>{Number(user.balanceSpent).toFixed(2)}</td>
                   </tr>

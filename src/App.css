@@ -38,7 +38,7 @@ html, body{
   background-color: #000;
 }
 
-form{
+.login-form{
   width: 40% !important;
   background-color: #dcdcdc;
   padding: 3rem !important;
@@ -196,10 +196,10 @@ form label{
 .emailBox{
   background-color: #fff;
   width: 40%;
-  height: 40%;
+  position: relative;
   padding: 2rem;
-  /* text-align: center; */
   color: #000;
+  border-radius: 5px;
 }
 
 .emailBox select{
@@ -209,15 +209,70 @@ form label{
   cursor: pointer;
 }
 
+.sendMessage{
+  margin-top: 1rem;
+}
+
 .sendMessage div label{
   display: block;
 }
 
-#loader{
+.sendMessage div{
+  margin: .5rem 0;
+}
+
+.sendMessage input{
+  outline: none;
+  border: 1px solid #001b3ade;
+  font-size: 13px;
+  padding: 5px;
+  width: 100%;
+}
+
+.sendMessage textarea{
+  outline: none;
+  border: 1px solid #001b3ade;
+  font-size: 13px;
+  padding: 5px;
+  width: 100%;
+}
+
+.emailBox button{
+  background-color: #198754;
+  padding: 5px 10px;
+  color: #fff;
+  border-radius: 3px;
+  display: block;
+  margin: 0 auto;
+}
+
+.loaderBg{
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  font-size: 5rem;
+  background-color: rgba(0, 0, 0, 0.868);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.emailBox i{
+  cursor: pointer;
+  color: #191C24;
+  font-size: 1.2rem;
+  position: absolute;
+  top: 4%;
+  right: 4%;
+}
+
+.emailBox i:hover{
+  color: #d20000;
+}
+
+#loader{
   font-size: 5rem;
 }
 
