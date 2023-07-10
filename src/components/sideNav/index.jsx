@@ -120,7 +120,7 @@ function logout(){
         <div className="totalUsers">
           <div>
             <h6>${totalFunds && totalFunds}</h6>
-            <p>Total Funds</p>
+            <p className='d-flex align-items-center gap-2' style={{ fontSize:"12px" }}>Total Funds <span style={{ fontSize:"10px" }}>#{totalFunds && totalFunds*769.50}</span> </p>
           </div>
           <i className="fa-solid fa-money-check-dollar"></i>
         </div>

@@ -260,7 +260,7 @@ form label{
   justify-content: center;
 }
 
-.emailBox i{
+.emailBox .fa-rectangle-xmark{
   cursor: pointer;
   color: #191C24;
   font-size: 1.2rem;
@@ -283,10 +283,37 @@ form label{
 
 .user-details{
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
-  gap: 3rem;
+  flex-direction: column;
+  /* gap: 3rem; */
   margin-bottom: 2rem;
+}
+
+.user-details h4{
+  border-bottom: 1px solid #fff;
+  width: 100%;
+}
+
+.user-detail-loader{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 3rem 0;
+}
+
+.user-detail-loader i{
+  font-size: 1.5rem;
+}
+
+.user-info{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.user-info div{
+  margin: 1rem 0;
 }
 
 @media screen and (max-width:1310px) {
@@ -296,14 +323,58 @@ form label{
 }
 
 @media screen and (max-width:992px) {
-  form{
+  .login-form{
     width: 70% !important;
+  }
+
+  .stats{
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stats2{
+    padding: 0 3rem;
+  }
+
+  .searchUser input{
+    width: 70%;
+  }
+
+  .user-details-container{
+    padding: 1rem 3rem;
   }
 }
 
-@media screen and (max-width:400px) {
-  form{
+@media screen and (max-width: 768px) {
+  .user-info{
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width:576px) {
+  .login-form{
     width: 90% !important;
     padding: 1.5rem !important;
+  }
+
+  .stats, .stats2{
+    grid-template-columns: 1fr;
+  }
+
+  .searchUser input{
+    width: 90%;
+  }
+
+  .user-details-container{
+    padding: 1.5rem;
+  }
+}
+
+@media screen and (max-width:375px) {
+  .stats, .stats2{
+    padding: 1rem;
+  }
+
+  .stats2{
+    padding-top: 0;
   }
 }
