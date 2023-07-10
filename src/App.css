@@ -342,6 +342,10 @@ form label{
   .user-details-container{
     padding: 1rem 3rem;
   }
+
+  .emailBox{
+    width: 60%;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -367,6 +371,10 @@ form label{
   .user-details-container{
     padding: 1.5rem;
   }
+
+  .emailBox{
+    width: 80%;
+  }
 }
 
 @media screen and (max-width:375px) {
@@ -376,5 +384,10 @@ form label{
 
   .stats2{
     padding-top: 0;
+  }
+
+  .emailBox{
+    width: 90%;
+    padding: 1rem;
   }
 }
