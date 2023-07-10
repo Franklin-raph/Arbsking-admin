@@ -107,7 +107,7 @@ const Userprofile = () => {
           <div className='user-info'>
             <div className='me-5'>
               <h6>Referral Agent</h6>
-              <p>{userDetail && userDetail.referralAgent.toString()}</p>
+              {userDetail && userDetail.referralAgent === true ? <p>true</p> : <p>false</p> }
             </div>
             <div>
               <h6>Referred By</h6>
@@ -126,6 +126,20 @@ const Userprofile = () => {
               <div className='me-5'>
                 <h6>Sub Expiring Date</h6>
                 <p>{userDetail && userDetail.subExpiringDate}</p>
+              </div>
+              <div>
+                <h6>Sub Type</h6>
+                <p>{userDetail && userDetail.subType}</p>
+              </div>
+          </div>
+        </div>
+
+        <div className="user-details">
+          <h4>User Login Status</h4>
+            <div className='user-info'>
+              <div className='me-5'>
+                <h6>is user logged in</h6>
+                {userDetail && userDetail.isUserLoggedIn === true ? <p>true</p> : <p>false</p> }
               </div>
               <div>
                 <h6>Sub Type</h6>

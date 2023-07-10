@@ -157,10 +157,13 @@ function logout(){
         </div>
         <div className="offcanvas-body">
           <li>
-            <Link to="/dashboard">All Users</Link>
+            <Link to="/dashboard" className='text-dark'>All Users</Link>
+          </li>
+          <li className='text-dark' style={{ cursor:"pointer" }}>
+            <p>Export All User Data</p>
           </li>
           <li>
-            <a href="/" onClick={logout}>Logout</a>
+            <a href="/" onClick={logout} className='text-dark'>Logout</a>
           </li>
         </div>
       </div>
