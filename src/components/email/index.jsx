@@ -23,11 +23,14 @@ const EmailUser = ({userEmail, setIsEmailOpen}) => {
     const [email, setEmail] = useState(userEmail)
     const [adminPin, setAdminPin] = useState("")
     const [emailType, setEmailType] = useState("send-message")
+    const [messageType, setMessageType] = useState("single")
     const [message, setMessage] = useState("")
     const [messageSubject, setMessageSubject] = useState("")
+    const [multipleEmails, setMultipleEmails] = useState("")
     const [subCost, setSubCost] = useState("")
     const [subDuration, setSubDuration] = useState("")
     const [loading, setLoading] = useState(false)
+    const [serverResponse, setServerResponse] = useState("Send Email To User(s)")
     const loggedInAdmin = JSON.parse(localStorage.getItem('admin'))
     // console.log(loggedInAdmin)
     // nwfrgodwin@gmail.com
@@ -36,17 +39,18 @@ const EmailUser = ({userEmail, setIsEmailOpen}) => {
     async function sendMessage(e){
         e.preventDefault()
         setLoading(true)
-        console.log(JSON.stringify({email, adminPin, emailType, message, messageSubject, subCost, subDuration}))
+            console.log(JSON.stringify({email, adminPin, emailType, message, messageSubject, subCost, subDuration, multipleEmails, messageType}))
         const response = await fetch("https://sportbetpredict.onrender.com/api/admin/send-email", {
             method:"POST",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${loggedInAdmin}`
             },
-            body: JSON.stringify({email, adminPin, emailType, message, messageSubject, subCost, subDuration})
+            body: JSON.stringify({email, adminPin, emailType, message, messageSubject, subCost, subDuration, multipleEmails, messageType})
         })
         const data = await response.json()
         if(response) setLoading(false)
+        if(!response.ok) setServerResponse(data.message)
         console.log(response, data)
     }
 
@@ -54,33 +58,60 @@ const EmailUser = ({userEmail, setIsEmailOpen}) => {
         setEmail(userEmail)
         setAdminPin("")
         setEmailType("send-message")
+        setMessageType("single")
+        setMultipleEmails()
         setMessage("")
         setMessageSubject("")
         setSubCost("")
         setSubDuration("")
+        setServerResponse("Send Email To User(s)")
     }
 
   return (
     <div className='emailUserBg'>
         <div className='emailBox'>
+            <p className='text-center'>{serverResponse}</p>
+            {/* <p className='text-center'>Send Email To User(s)</p> */}
             <i className="fa-solid fa-rectangle-xmark" onClick={e => setIsEmailOpen(false)}></i>
-            <p style={{ fontSize:"13px", marginTop:"10px" }}>Select Email Type</p>
             <div className='d-flex justify-content-between'>
-                <select onChange={e => setEmailType(e.target.value)}>
-                    <option value="send-message">Send Message</option>
-                    <option value="selected-referral">selected Referral</option>
-                    <option value="confirmation-email">Confirmation Email</option>
-                    <option value="subscription-purchase">Subscription Purchase</option>
-                    <option value="withdrawal-email">Withdrawal-email</option>
-                </select>
-                <i className='fa-solid fa-spinner' style={{ cursor:"pointer" }} onClick={resetForm}></i>
+                <div>
+                    <p style={{ fontSize:"13px", marginTop:"10px" }}>Select Email Type</p>
+                    <select onChange={e => setEmailType(e.target.value)}>
+                        <option value="send-message">Send Message</option>
+                        <option value="selected-referral">selected Referral</option>
+                        <option value="confirmation-email">Confirmation Email</option>
+                        <option value="subscription-purchase">Subscription Purchase</option>
+                        <option value="withdrawal-email">Withdrawal-email</option>
+                        <option value="logged-out-email">Logged Out Email</option>
+                    </select>
+                </div>
+                <div>
+                    <p style={{ fontSize:"13px", marginTop:"10px" }}>Select Message Type</p>
+                    <select onChange={e => setMessageType(e.target.value)}>
+                        <option value="single">Single</option>
+                        <option value="multiple">Multiple</option>
+                        <option value="all">All</option>
+                    </select>
+                </div>
+                <i className='fa-solid fa-spinner' style={{ cursor:"pointer", display:"inline-block" }} onClick={resetForm}></i>
             </div>
             <form className="sendMessage" onSubmit={sendMessage}>
                 <div className="d-flex justify-content-between gap-3">
-                    <div style={{ width:"100%" }}>
+                    {messageType === "single" ? 
+                    (<div style={{ width:"100%" }}>
                         <label htmlFor="email">Email</label>
                         <input type="email" value={email} onChange={e => setEmail(e.target.value)} required/>
-                    </div>
+                    </div>) 
+                    : 
+                    messageType === "all" ? "" 
+                    : 
+                    messageType === "multiple" ?
+                    (<div style={{ width:"100%" }}>
+                        <label htmlFor="email">Enter Multiple Emails</label>
+                        <input type="text" value={multipleEmails} onChange={e => setMultipleEmails(e.target.value)} required/>
+                    </div>):""
+                     }
+                    
                     {emailType === "send-message" ?
                     <div style={{ width:"100%" }}>
                         <label htmlFor="email">Email Subject</label>

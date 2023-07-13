@@ -7,6 +7,10 @@ const Sidenav = () => {
   const [numOfSubedUsers, setNumOfSubedUsers] = useState([])
   const [totalFunds, setTotalFunds] = useState("")
   const [totalFundsInAllAddresses, setTotalFundsInAllAddresses] = useState("")
+  const [adminPin, setAdminPin] = useState("")
+  const [message, setMessage] = useState("")
+  const [serverResponse, setServerResponse] = useState("")
+  const [loading, setLoading] = useState(false)
   const loggedInAdmin = JSON.parse(localStorage.getItem('admin'))
 
   const navigate = useNavigate()
@@ -89,6 +93,25 @@ const Sidenav = () => {
     setTotalFundsInAllAddresses(data.message)
   }
 
+  async function sendBroadCastMessage(){
+    console.log({adminPin, message})
+    setLoading(true)
+    const response = await fetch("https://sportbetpredict.onrender.com/api/admin/add/broadcast-message", {
+      method:"POST",
+      headers: {
+        Authorization: `Bearer ${loggedInAdmin}`,
+        "Content-type" : "application/json"
+      },
+      body: JSON.stringify({adminPin, message, "from":"admin"})
+    })
+    const data = await response.json()
+    if(response) {
+      setLoading(false)
+      setServerResponse(data.message)
+      console.log(response, data)
+    }
+  }
+
 function logout(){
   localStorage.clear()
 }
@@ -165,6 +188,32 @@ function logout(){
           <li>
             <a href="/" onClick={logout} className='text-dark'>Logout</a>
           </li>
+          <li data-bs-toggle="modal" data-bs-target="#exampleModal" className='text-dark'style={{ cursor:"pointer" }}>
+            Send Broadcast Message
+          </li>
+        </div>
+      </div>
+
+      {/* Broadcast message modal */}
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title text-dark" style={{ fontSize:"14px" }} id="exampleModalLabel">Brodadcast Message</h1>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div className="modal-body">
+              <label className='text-dark mb-1'>Admin Pin</label>
+              <input type="text" placeholder='Admin Pin' onChange={e => setAdminPin(e.target.value)} className='form-control'/>
+              <label className='text-dark mt-4 mb-1'>Broadcast Message</label>
+              <textarea cols="30" rows="7" className='form-control' onChange={e => setMessage(e.target.value)} placeholder='Enter broadcast message'></textarea>
+            </div>
+            <p className='text-dark text-center mb-3'>{serverResponse}</p>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              {loading ? <button className='btn btn-success'><i className="fa-solid fa-spinner fa-spin me-2"></i></button> : <button type="button" className="btn btn-success" onClick={sendBroadCastMessage}>Send</button>}
+            </div>
+          </div>
         </div>
       </div>
     </div>

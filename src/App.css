@@ -197,7 +197,7 @@ form label{
   background-color: #fff;
   width: 40%;
   position: relative;
-  padding: 1rem 2rem;
+  padding: 2.5rem 2rem;
   color: #000;
   border-radius: 5px;
 }
@@ -348,6 +348,16 @@ form label{
   }
 }
 
+@media screen and (max-width:820px) {
+  /* table{
+    display: none;
+  }
+
+  .mobileUserInfo{
+    display: grid;
+  } */
+}
+
 @media screen and (max-width: 768px) {
   .user-info{
     grid-template-columns: 1fr;
@@ -361,7 +371,7 @@ form label{
   }
 
   .stats, .stats2{
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
   .searchUser input{
