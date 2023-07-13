@@ -91,7 +91,7 @@ const Dashboard = () => {
         .toLocaleLowerCase().includes(searchUser))
         .map(user =>{
           return(
-            <div className="userInfo">
+            <div className="userInfo" onClick={() => navigate('/userprofile/'+user._id)} style={{ cursor:"pointer" }}>
               <h5>{user.username}</h5>
                 {new Date() > new Date(user.subExpiringDate) ? (
                 <p style={{ color:"#d20000" }}>Expired</p>
