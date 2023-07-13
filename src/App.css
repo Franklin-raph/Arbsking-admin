@@ -326,6 +326,10 @@ form label{
   margin-bottom: 15px;
 }
 
+.mobileUserInfo{
+  display: none;
+}
+
 @media screen and (max-width:1310px) {
   .stats{
     padding: 1rem 3rem;
