@@ -394,8 +394,16 @@ form label{
     padding: 1.5rem !important;
   }
 
-  .stats, .stats2{
-    grid-template-columns: 1fr;
+  .stats i, .stats2 i{
+    display: none;
+  }
+
+  .stats h6, .stats2 h6{
+    font-size: 20px;
+  }
+
+  .stats p, .stats2 p{
+    font-size: 12px;
   }
 
   .searchUser input{
@@ -414,6 +422,7 @@ form label{
 @media screen and (max-width:375px) {
   .stats, .stats2{
     padding: 1rem;
+    
   }
 
   .stats2{
@@ -423,5 +432,10 @@ form label{
   .emailBox{
     width: 90%;
     padding: 1rem;
+  }
+
+  .totalActiveUsers, .totalUsers{
+    height: 90px;
+    width: 130px;
   }
 }
