@@ -27,6 +27,7 @@ const Dashboard = () => {
       })
       console.log(response)
       const data = await response.json()
+      console.log(data)
       if(response.ok){
         setUsers(data.message)
         localStorage.setItem("users", JSON.stringify(data.message))
@@ -82,6 +83,27 @@ const Dashboard = () => {
           </table>
         }
       </div>
+        <div className='mobileUserInfo'>
+        {users && users
+        .filter(user => user.username
+        .toLowerCase().includes(searchUser) || user.email
+        .toLowerCase().includes(searchUser) || user.arbsKingId
+        .toLocaleLowerCase().includes(searchUser))
+        .map(user =>{
+          return(
+            <div className="userInfo">
+              <h5>{user.username}</h5>
+                {new Date() > new Date(user.subExpiringDate) ? (
+                <p style={{ color:"#d20000" }}>Expired</p>
+              ) : new Date() < new Date(user.subExpiringDate) ? (
+                <p style={{ color:"#00d25b" }}>Active</p>
+              ) : (
+                <p>No Sub</p>
+              )}
+            </div>
+          )
+        })}
+        </div>
   </>
   )
 }
