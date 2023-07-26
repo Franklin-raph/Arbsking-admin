@@ -66,7 +66,8 @@ const EmailUser = ({userEmail, setIsEmailOpen}) => {
         setMessageSubject("")
         setSubCost("")
         setSubDuration("")
-        setServerResponse("Send Email To User(s)")
+        setEmailError("")
+        setEmailSuccess("")
     }
 
   return (
