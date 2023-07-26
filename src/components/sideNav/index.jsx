@@ -82,6 +82,7 @@ const Sidenav = () => {
   }
 
   async function getTotalFundsInAllAddresses(){
+    console.log("Loading...")
     const response = await fetch("https://sportbetpredict.onrender.com/api/admin/fetch/all-users/address-balance", {
       method:"GET",
       headers: {
@@ -143,7 +144,7 @@ function logout(){
         <div className="totalUsers">
           <div>
             <h6>${totalFunds && totalFunds}</h6>
-            <p className='d-flex align-items-center gap-2' style={{ fontSize:"12px" }}>Total Funds <span style={{ fontSize:"10px" }}>#{totalFunds && totalFunds*769.50}</span> </p>
+            <p className='d-flex align-items-center gap-2' style={{ fontSize:"12px" }}>Total Funds <span style={{ fontSize:"10px" }}>#{totalFunds && totalFunds*820}</span> </p>
           </div>
           <i className="fa-solid fa-money-check-dollar"></i>
         </div>
@@ -157,7 +158,8 @@ function logout(){
       </div>
 
       <div className="stats2">
-      <div className="totalUsers">
+      <div className="totalUsers" style={{ position:"relative" }}>
+        <button onClick={getTotalFundsInAllAddresses} style={{position:"absolute", right:"3%", top:"3%"}}>Reload</button>
           <div>
             <h6>${totalFundsInAllAddresses && totalFundsInAllAddresses}</h6>
             <p>Total Funds in all Addresses</p>

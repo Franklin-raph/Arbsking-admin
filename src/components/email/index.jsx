@@ -30,7 +30,8 @@ const EmailUser = ({userEmail, setIsEmailOpen}) => {
     const [subCost, setSubCost] = useState("")
     const [subDuration, setSubDuration] = useState("")
     const [loading, setLoading] = useState(false)
-    const [serverResponse, setServerResponse] = useState("Send Email To User(s)")
+    const [emailSuccess, setEmailSuccess] = useState("")
+    const [emailError, setEmailError] = useState("")
     const loggedInAdmin = JSON.parse(localStorage.getItem('admin'))
     // console.log(loggedInAdmin)
     // nwfrgodwin@gmail.com
@@ -50,7 +51,8 @@ const EmailUser = ({userEmail, setIsEmailOpen}) => {
         })
         const data = await response.json()
         if(response) setLoading(false)
-        if(!response.ok) setServerResponse(data.message)
+        if(!response.ok) setEmailError(data.message)
+        if(response.ok) setEmailSuccess(data.message)
         console.log(response, data)
     }
 
@@ -70,7 +72,9 @@ const EmailUser = ({userEmail, setIsEmailOpen}) => {
   return (
     <div className='emailUserBg'>
         <div className='emailBox'>
-            <p className='text-center'>{serverResponse}</p>
+            <p className='text-center mb-3'>Send Email To User(s)</p>
+            {emailSuccess && <p className='text-center alert alert-success py-2'>{emailSuccess}</p> }
+            {emailError && <p className='text-center alert alert-danger py-2'>{emailError}</p> }
             {/* <p className='text-center'>Send Email To User(s)</p> */}
             <i className="fa-solid fa-rectangle-xmark" onClick={e => setIsEmailOpen(false)}></i>
             <div className='d-flex justify-content-between'>
@@ -148,7 +152,7 @@ const EmailUser = ({userEmail, setIsEmailOpen}) => {
                 :
                 ""
                 }
-                <button>
+                <button className='mt-3'>
                     {loading ? <i className='fa-solid fa-spinner fa-spin' ></i> : <div style={{ margin: "0" }} type='submit'> Send Email</div> }
                 </button>
             </form>
